@@ -2,8 +2,13 @@ local cmp = require("blink.cmp")
 local autopairs = require("nvim-autopairs")
 
 pcall(require, "blink.compat")
+require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
+  snippets = {
+    preset = "luasnip",
+  },
+
   sources = {
     default = { "lsp", "path", "snippets", "buffer", "laravel" },
     providers = {
