@@ -141,31 +141,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
 
-    local function goto_definition_direct()
-      local params = vim.lsp.util.make_position_params(event.buf)
-      vim.lsp.buf_request(event.buf, "textDocument/definition", params, function(err, result, ctx)
-        if err then
-          vim.notify(("LSP definition error: %s"):format(err.message), vim.log.levels.ERROR)
+    local function with_fzf(picker, fallback)
+      return function()
+        local ok, fzf = pcall(require, "fzf-lua")
+        if ok and fzf[picker] then
+          fzf[picker]({
+            jump1 = true,
+          })
           return
         end
-
-        if not result or vim.tbl_isempty(result) then
-          vim.notify("No definition found", vim.log.levels.INFO)
-          return
-        end
-
-        local location = result
-        if vim.islist(result) then
-          location = result[1]
-        end
-
-        local client = vim.lsp.get_client_by_id(ctx.client_id)
-        local offset_encoding = client and client.offset_encoding or "utf-16"
-        vim.lsp.util.jump_to_location(location, offset_encoding, true)
-      end)
+        fallback()
+      end
     end
 
-    map("gd", goto_definition_direct, "Go to Definition")
+    map("gd", with_fzf("lsp_definitions", vim.lsp.buf.definition), "Go to Definition")
     map("gD", vim.lsp.buf.declaration, "Go to Declaration")
     map("gr", vim.lsp.buf.references, "References")
     map("gi", vim.lsp.buf.implementation, "Implementation")
