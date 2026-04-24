@@ -141,7 +141,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
 
-    map("gd", vim.lsp.buf.definition, "Go to Definition")
+    local function with_fzf(picker, fallback)
+      return function()
+        local ok, fzf = pcall(require, "fzf-lua")
+        if ok and fzf[picker] then
+          fzf[picker]({
+            jump1 = true,
+          })
+          return
+        end
+        fallback()
+      end
+    end
+
+    map("gd", with_fzf("lsp_definitions", vim.lsp.buf.definition), "Go to Definition")
     map("gD", vim.lsp.buf.declaration, "Go to Declaration")
     map("gr", vim.lsp.buf.references, "References")
     map("gi", vim.lsp.buf.implementation, "Implementation")
