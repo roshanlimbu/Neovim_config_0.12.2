@@ -24,6 +24,8 @@ treesitter.setup({
     "css",
     "json",
     "bash",
+    "markdown",
+    "markdown_inline"
   },
 
   highlight = {

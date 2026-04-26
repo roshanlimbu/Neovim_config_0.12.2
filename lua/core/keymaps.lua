@@ -103,3 +103,8 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>")
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>")
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>")
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>")
+
+
+-- markdown
+vim.keymap.set("n", "<leader>um", "<cmd>RenderMarkdown toggle<cr>", { desc = "Toggle Render Markdown" })
+vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })

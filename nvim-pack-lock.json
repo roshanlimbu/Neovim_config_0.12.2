@@ -53,6 +53,10 @@
       "rev": "a905eeebc4e63fdc48b5135d3bf8aea5618fb21c",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
+    "markdown-preview.nvim": {
+      "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
+      "src": "https://github.com/iamcco/markdown-preview.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "0c2823e0418f3d9230ff8b201c976e84de1cb401",
       "src": "https://github.com/williamboman/mason-lspconfig.nvim"
@@ -116,6 +120,10 @@
     "promise-async": {
       "rev": "119e8961014c9bfaf1487bf3c2a393d254f337e2",
       "src": "https://github.com/kevinhwang91/promise-async"
+    },
+    "render-markdown.nvim": {
+      "rev": "d67113f11384c0dad96fced2f7b91f1fc811e97f",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "rustaceanvim": {
       "rev": "07f0900627f1bb2fc9ee8b5e39bb96fe40c2e0a1",

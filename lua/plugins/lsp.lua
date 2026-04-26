@@ -19,24 +19,6 @@ vim.lsp.config("lua_ls", {
   },
 })
 
--- typescript
--- vim.lsp.config("ts_ls", {
---   capabilities = capabilities,
---   settings = {
---     javascript = {
---       validate = true,
---       suggest = {
---         completeFunctionCalls = true,
---       },
---     },
---     typescript = {
---       validate = true,
---       suggest = {
---         completeFunctionCalls = true,
---       },
---     },
---   },
--- })
 
 vim.lsp.config("vtsls", {
   capabilities = capabilities,

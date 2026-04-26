@@ -47,4 +47,8 @@ vim.pack.add({
   { src = "https://github.com/lewis6991/gitsigns.nvim" },
 
   { src = "https://github.com/mrcjkb/rustaceanvim" },
+
+  { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim"},
+  { src = "https://github.com/iamcco/markdown-preview.nvim"},
+
 }, { load = true })
