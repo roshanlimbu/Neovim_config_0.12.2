@@ -141,20 +141,35 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
 
-    local function with_fzf(picker, fallback)
-      return function()
-        local ok, fzf = pcall(require, "fzf-lua")
-        if ok and fzf[picker] then
-          fzf[picker]({
-            jump1 = true,
-          })
-          return
-        end
-        fallback()
-      end
-    end
+    -- local function with_fzf(picker, fallback)
+    --   return function()
+    --     local ok, fzf = pcall(require, "fzf-lua")
+    --     if ok and fzf[picker] then
+    --       fzf[picker]({
+    --         jump1 = true,
+    --       })
+    --       return
+    --     end
+    --     fallback()
+    --   end
+    -- end
 
-    map("gd", with_fzf("lsp_definitions", vim.lsp.buf.definition), "Go to Definition")
+    map("gd", function()
+        local params = vim.lsp.util.make_position_params(0, "utf-8")
+
+        vim.lsp.buf_request(0, "textDocument/definition", params, function(err, result)
+            if err or not result or vim.tbl_isempty(result) then
+                vim.notify("No definition found", vim.log.levels.WARN)
+                return
+            end
+
+            local target = vim.islist(result) and result[1] or result
+
+            vim.schedule(function()
+                vim.lsp.util.show_document(target, "utf-8", { focus = true })
+            end)
+        end)
+    end, "Go to Definition")
     map("gD", vim.lsp.buf.declaration, "Go to Declaration")
     map("gr", vim.lsp.buf.references, "References")
     map("gi", vim.lsp.buf.implementation, "Implementation")

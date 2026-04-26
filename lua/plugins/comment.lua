@@ -1,17 +1,23 @@
-local ok_context, context = pcall(require, "ts_context_commentstring")
-if ok_context then
-  context.setup({
+local ok_ctx, ts_ctx = pcall(require, "ts_context_commentstring")
+if ok_ctx then
+  ts_ctx.setup({
     enable_autocmd = false,
   })
 end
 
-local ok_comment, comment = pcall(require, "Comment")
-if not ok_comment then
+local ok, comment = pcall(require, "mini.comment")
+if not ok then
   return
 end
 
 comment.setup({
-  pre_hook = ok_context
-      and require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
-    or nil,
+  options = {
+    custom_commentstring = function()
+      local ok_internal, internal = pcall(require, "ts_context_commentstring.internal")
+      if ok_internal then
+        return internal.calculate_commentstring() or vim.bo.commentstring
+      end
+      return vim.bo.commentstring
+    end,
+  },
 })

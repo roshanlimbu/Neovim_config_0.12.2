@@ -31,7 +31,8 @@ vim.pack.add({
   { src = "https://github.com/akinsho/toggleterm.nvim" },
   { src = "https://github.com/kdheepak/lazygit.nvim" },
 
-  { src = "https://github.com/numToStr/Comment.nvim" },
+  -- { src = "https://github.com/numToStr/Comment.nvim" },
+  { src = "https://github.com/nvim-mini/mini.comment" },
   { src = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring" },
 
   { src = "https://github.com/tpope/vim-dotenv" },
