@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.opt.shortmess:append("I")
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
@@ -13,3 +14,6 @@ vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.undolevels = 10000
 vim.opt.undoreload = 10000
+vim.opt.wrap=false
+vim.opt.splitright = true
+vim.opt.splitbelow = true

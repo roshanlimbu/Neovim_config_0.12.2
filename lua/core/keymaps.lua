@@ -15,8 +15,8 @@ map("n", "yc", "yygccp", { remap = true })
 map("v", "<leader>C", "ygvgc`>p", { remap = true, desc = "Copy to comment above" })
 
 -- format
-map("n", "<leader>7", function()
-  vim.lsp.buf.format()
+map("n", "<leader>cf", function()
+  require("conform").format({async =true })
 end, { desc = "Format file" })
 
 -- better j/k
